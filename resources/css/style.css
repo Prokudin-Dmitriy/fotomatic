@@ -42,6 +42,7 @@ html {
 header {
   position: fixed;
   width: 100%;
+  z-index: 1;
   border-bottom: solid 1px #c6c1c1;
   background-color: white;
 }
@@ -51,6 +52,10 @@ header .content {
   justify-content: space-between;
   padding: 1.875rem;
   height: 5.3125rem;
+}
+
+.desktop li:last-child {
+  display: none;
 }
 
 header .logo {
@@ -84,18 +89,20 @@ header .mobile {
   display: none;
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 768px) {
   header .desktop {
     display: none;
   }
-
+  
   header .mobile {
-    display: block;
+    display: flex;
+    align-items: flex-end;
     width: 100%;
   }
-
+  
   header .content {
     padding: .5rem 0;
+    height: 3rem;
   }
 
   header .mobile ul {
@@ -109,7 +116,24 @@ header .mobile {
     padding: 0;
   }
 
+  header .mobile img {
+    height: 22px;
+  }
+
   header .mobile .button {
+    padding: .1875rem .5rem;
+    background-color: #9dc20b;
+    line-height: 1.6;
+    color: white;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+  .desktop li:last-child {
+    display: initial;
+  }
+
+  header .desktop .button {
     padding: .1875rem .5rem;
     background-color: #9dc20b;
     line-height: 1.6;
@@ -125,6 +149,9 @@ header .mobile {
   align-items: center;
   height: 43.5rem;
   background-image: url('../images/banner-landingpage.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 #sign-up-cta {
@@ -170,33 +197,34 @@ header .mobile {
   padding: 1.25rem 7.25rem;
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 992px) {
   #sign-up-section {
     align-items: center;
     justify-content: center;
     height: 28rem;
   }
-
+  
   #sign-up-cta {
     position: static;
     width: auto;
     height: auto;
     background-color: transparent;
     border: none;
+    margin-left: 0;
   }
-
+  
   #sign-up-cta .content {
     margin-top: 0;
   }
-
+  
   #sign-up-cta .email {
     display: none;
   }
-
+  
   #sign-up-cta h1 {
     font-size: 3.125rem;
   }
-
+  
   #sign-up-cta h2 {
     font-size: 2.25rem;
   }
@@ -221,7 +249,7 @@ header .mobile {
 #features-section {
   display: flex;
   justify-content: space-between;
-  padding: 4rem 5%;
+  padding: 4rem 5% 3rem;
   background-color: #f3f3f3;
 }
 
@@ -263,6 +291,14 @@ header .mobile {
   color: #4a4a4a;
 }
 
+
+@media only screen and (max-width: 992px) {
+  .feature .content {
+    text-align: left;
+    width: 100%;
+  }
+}
+
 @media only screen and (max-width: 890px) {
   .feature h2 {
     font-size: 1.125rem;
@@ -276,7 +312,23 @@ header .mobile {
   }
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 768px) {
+  #features-section {
+    padding: 0;
+  }
+  
+  .feature {
+    margin: 0;
+    padding: 1.25rem 1rem 0 1rem;
+  }
+
+  .feature .content {
+    text-align: center;
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
   #features-section {
     flex-flow: column;
     padding: 0;
@@ -286,11 +338,16 @@ header .mobile {
     margin: 0;
     padding: 1.25rem 1rem 0 1rem;
   }
+
+  .feature .content {
+    height: initial;
+    margin-bottom: 30px;
+  }
 }
 
 /* Filters Section */
 
-/* #filters-section {
+#filters-section {
   padding: 4rem 0;
   background-color: #4a4a4a;
 }
@@ -304,6 +361,7 @@ header .mobile {
   font-size: 2.25rem;
   font-weight: bold;
   color: white;
+  margin-bottom: 5px;
 }
 
 #filters-section .content h3 {
@@ -314,8 +372,24 @@ header .mobile {
 }
 
 #filters-section .images-container {
-  max-width: 100%;
+  display: flex;
   padding: 0 1%;
+}
+
+#filters-section img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 992px) {
+  #filters-section {
+    padding: 2.5rem 0 0;
+    background-color: #4a4a4a;
+  }
+
+  #filters-section .content {
+    margin-bottom: 3rem;
+  }
 }
 
 @media only screen and (max-width: 760px) {
@@ -346,19 +420,19 @@ header .mobile {
   #filters-section .extra {
     display: none;
   }
-}*/
+}
 
 /* Quotes Section */
 
-/*#quotes-section {
+#quotes-section {
   background-color: #f3f3f3;
 }
 
-#quotes-section content {
+#quotes-section .content {
   padding: 5rem 0;
 }
 
-#quotes-section quote {
+#quotes-section .quote {
   padding-right: 1.875rem;
   font-family: "Palatino", serif;
   font-size: 1.875rem;
@@ -367,30 +441,58 @@ header .mobile {
   color: #4a4a4a;
 }
 
-#quotes-section quote-citation {
+#quotes-section .quote-citation {
   height: 1.875rem;
+  vertical-align: sub;
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1100px) {
+  #quotes-section .content {
+    display: flex;
+  }
+  
+  #quotes-section .quote {
+    display: block;
+    text-align: left;
+    padding-left: 1.875rem;
+  }
+
+  #quotes-section .quote-citation {
+    align-self: flex-start;
+    height: 2rem;
+  }
 }
 
 @media only screen and (max-width: 760px) {
-  #quotes-section content {
+  #quotes-section .content {
     padding: 1.875rem .625rem;
   }
 
-  #quotes-section quote {
+  #quotes-section .quote {
+    display: block;
     font-size: 1.5rem;
     line-height: 1.4;
   }
 
-  #quotes-section quote-citation {
+  #quotes-section .quote-citation {
     display: block;
     padding-top: 1rem;
     margin: auto;
+    height: 3rem;
   }
-} */
+}
+
+/*
+# Mobile
+only screen and (max-width: 576px)
+
+# Tablet
+only screen and (min-width: 576px) and (max-width: 992px) 
+*/
 
 /* Footer */
 
-/* footer {
+footer {
   background-color: #9b9b9b;
   padding: 1.5rem 2rem;
 }
@@ -405,8 +507,8 @@ footer .copyright {
   flex-grow: 1;
 }
 
-@media only screen and (min-width: 760px) {
+@media only screen and (max-width: 576px) {
   footer .content {
     font-size: .625rem;
   }
-} */
+}
